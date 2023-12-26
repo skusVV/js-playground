@@ -13,8 +13,12 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "^6.11.1",
+    "@codemirror/lang-javascript": "^6.2.1",
+    "@uiw/react-codemirror": "^4.21.21",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-inspector": "^6.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
