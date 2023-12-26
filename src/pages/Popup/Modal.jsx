@@ -1,7 +1,6 @@
 import React from 'react';
 
 class Modal extends React.Component {
-
     onThemeChange = e => {
         this.props.onThemeChange(e.currentTarget.value);
     }
