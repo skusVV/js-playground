@@ -92,7 +92,7 @@ class Popup extends React.Component {
         </div>
           {
             this.state.panels
-                  .map((item, index) => <Redactor settings={this.state.settings} tabId={item.id} activePanelId={this.state.activePanelId}/> )
+                  .map((item, index) => <Redactor key={item.id} settings={this.state.settings} tabId={item.id} activePanelId={this.state.activePanelId}/> )
           }
         <img className="settings" src={settings} onClick={() => this.setState({ settings: {...this.state.settings, show: !this.state.settings.show}})}/>
         {

@@ -7,8 +7,6 @@ import { myCompletions } from './autocomplete';
 import { autocompletion } from '@codemirror/autocomplete';
 import { LOCAL_STORAGE_FONT_SIZE_KEY, URL, LOCAL_STORAGE_THEME_KEY, LOCAL_STORAGE_KEY, examples} from './constants'
 
-
-let intervalRef;
 const DELAY = 500;
 class Redactor extends React.Component {
     setItem = (key, value) => {
@@ -32,6 +30,7 @@ class Redactor extends React.Component {
         height: 420,
         output: [],
         error: null,
+        intervalRef: null
     };
 
     componentDidMount() {
@@ -40,8 +39,8 @@ class Redactor extends React.Component {
 
     handle = () => {
         this.setItem(LOCAL_STORAGE_KEY, this.state.value);
-        clearInterval(intervalRef);
-        intervalRef = setInterval(() => {
+        clearInterval(this.state.intervalRef);
+        const intervalRef = setInterval(() => {
             this.setState({ output: [] });
             const { lodash, rxjs, moment } = this.props.settings;
             fetch(URL, {
@@ -63,11 +62,14 @@ class Redactor extends React.Component {
                     } else {
                         this.setState({ output, error: null })
                     }
-                    clearInterval(intervalRef);
+
+                    clearInterval(this.state.intervalRef);
                 }).catch(err => {
-                clearInterval(intervalRef);
+                clearInterval(this.state.intervalRef);
             });
         }, DELAY);
+
+        this.setState({ intervalRef })
     };
 
     onThemeChange = e => {
@@ -88,7 +90,7 @@ class Redactor extends React.Component {
         }
 
         return (
-            <section className="container">
+            <section className="container" key={this.props.tabId}>
                 <CodeMirror
                     style={{fontSize: this.props.settings.fontSize + 'px'}}
                     basicSetup={true}
