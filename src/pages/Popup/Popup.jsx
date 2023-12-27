@@ -62,7 +62,6 @@ class Popup extends React.Component {
 
     localStorage.setItem(PANELS_STATE_KEY, JSON.stringify(panels));
 
-
     setTimeout(() => {
       const currentId = this.state.panels[this.state.panels.length - 1].id;
       this.setState({ activePanelId: currentId });
