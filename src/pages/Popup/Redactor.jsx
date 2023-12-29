@@ -72,18 +72,6 @@ class Redactor extends React.Component {
         this.setState({ intervalRef })
     };
 
-    onThemeChange = e => {
-        const settings = {...this.state.settings, theme: e };
-        this.setState({ settings });
-        this.setItem(LOCAL_STORAGE_THEME_KEY, e)
-    }
-
-    onFontSizeChange = e => {
-        const settings = {...this.state.settings, fontSize: e };
-        this.setState({ settings });
-        this.setItem(LOCAL_STORAGE_FONT_SIZE_KEY, e)
-    }
-
     render() {
         if(this.props.tabId !== this.props.activePanelId) {
             return null;

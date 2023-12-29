@@ -75,6 +75,18 @@ class Popup extends React.Component {
     localStorage.setItem([name], isChecked);
   }
 
+  onThemeChange = e => {
+    const settings = {...this.state.settings, theme: e };
+    this.setState({ settings });
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, e)
+  }
+
+  onFontSizeChange = e => {
+    const settings = {...this.state.settings, fontSize: e };
+    this.setState({ settings });
+    localStorage.setItem(LOCAL_STORAGE_FONT_SIZE_KEY, e)
+  }
+
   render() {
     return (
       <section className="container">
